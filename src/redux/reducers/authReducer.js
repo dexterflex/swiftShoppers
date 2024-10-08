@@ -1,9 +1,10 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { auth, db } from '../../firebase/config'
 import { doc, setDoc, getDoc } from "firebase/firestore";
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from "firebase/auth";
+import { browserSessionPersistence, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, setPersistence, onAuthStateChanged } from "firebase/auth";
 
 let initialState = {
+    token: null,
     currentUser: null,
     isAuthenticated: false,
     error: null,
@@ -33,20 +34,27 @@ export const signupUser = createAsyncThunk(
 
 export const loginUser = createAsyncThunk(
     "auth/loginUser",
-    async ({ email, password }, thunkAPI) => {
+    async ({ email, password, token }, thunkAPI) => {
         try {
-            const userCredentials = await signInWithEmailAndPassword(auth, email, password)
-            let user = userCredentials.user;
+            let user = token;
+            if (!token) {
+                // Proceed to sign in
+                const userCredentials = await signInWithEmailAndPassword(auth, email, password);
+                user = userCredentials.user;
+            }
 
             const docRef = doc(db, "users", user.uid);
             const docSnap = await getDoc(docRef);
 
-            thunkAPI.dispatch(login({ id: docSnap.id, ...docSnap.data() }))
+            // Dispatch the login action to update Redux store
+            thunkAPI.dispatch(login({ id: user.uid, ...docSnap.data() }));
+
         } catch (e) {
-            console.log(e.message)
+            console.log(e.message);
+            return thunkAPI.rejectWithValue(e.message);
         }
     }
-)
+);
 
 export const logoutUser = createAsyncThunk(
     "auth/logoutUser",
@@ -73,6 +81,7 @@ export const updateUser = createAsyncThunk(
         }
     }
 )
+
 
 export const authSlice = createSlice({
     name: "auth",

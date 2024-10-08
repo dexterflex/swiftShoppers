@@ -11,7 +11,8 @@ import 'react-toastify/dist/ReactToastify.css';
 
 const defaultData = {
     email: "",
-    password: ""
+    password: "",
+    token: null
 }
 
 const Login = () => {
