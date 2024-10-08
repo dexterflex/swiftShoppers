@@ -46,6 +46,7 @@ tbody td img {
     height: 70px;
     object-fit: cover;
     border-radius: 8px;
+    cursor: pointer;
 }
 
 tbody tr:hover {

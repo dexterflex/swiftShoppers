@@ -1,8 +1,10 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { auth, db } from '../../firebase/config'
 import { doc, setDoc, getDoc } from "firebase/firestore";
-import { browserSessionPersistence, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, setPersistence, onAuthStateChanged } from "firebase/auth";
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from "firebase/auth";
 
+
+// intial state 
 let initialState = {
     token: null,
     currentUser: null,
@@ -11,6 +13,7 @@ let initialState = {
     isLoading: false,
 }
 
+// Adds new User 
 export const signupUser = createAsyncThunk(
     "auth/signupUser",
     async ({ name, email, password }, thunkAPI) => {
@@ -32,16 +35,25 @@ export const signupUser = createAsyncThunk(
     }
 )
 
+// authenticate user 
 export const loginUser = createAsyncThunk(
     "auth/loginUser",
-    async ({ email, password, token }, thunkAPI) => {
+    async ({ email, password }, thunkAPI) => {
+        try {
+            // Proceed to sign in
+            await signInWithEmailAndPassword(auth, email, password);
+        } catch (e) {
+            thunkAPI.dispatch(setError("Wrong Credentials"))
+        }
+    }
+);
+
+// fetch the user and set the state 
+export const makeUserPersistence = createAsyncThunk(
+    "auth/persistenceUser",
+    async ({ token }, thunkAPI) => {
         try {
             let user = token;
-            if (!token) {
-                // Proceed to sign in
-                const userCredentials = await signInWithEmailAndPassword(auth, email, password);
-                user = userCredentials.user;
-            }
 
             const docRef = doc(db, "users", user.uid);
             const docSnap = await getDoc(docRef);
@@ -56,6 +68,7 @@ export const loginUser = createAsyncThunk(
     }
 );
 
+// logout user 
 export const logoutUser = createAsyncThunk(
     "auth/logoutUser",
     async (_, thunkAPI) => {
@@ -68,7 +81,7 @@ export const logoutUser = createAsyncThunk(
     }
 )
 
-
+// update user data 
 export const updateUser = createAsyncThunk(
     "auth/updateUser",
     async (user, thunkAPI) => {
@@ -83,6 +96,8 @@ export const updateUser = createAsyncThunk(
 )
 
 
+
+// authentication slice 
 export const authSlice = createSlice({
     name: "auth",
     initialState,
@@ -106,6 +121,7 @@ export const authSlice = createSlice({
     }
 })
 
-export const { login, logout } = authSlice.actions
+// export of reducer, actions and selector 
+export const { login, logout, setError } = authSlice.actions
 export const authReducer = authSlice.reducer;
 export const authSelector = (state) => (state.authReducer)

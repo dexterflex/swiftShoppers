@@ -12,13 +12,14 @@ import ProductDetails from './pages/productDetails/ProductDetails'
 import { useDispatch } from 'react-redux';
 import { auth } from './firebase/config'
 import { onAuthStateChanged } from 'firebase/auth';
-import { loginUser, logoutUser } from './redux/reducers/authReducer';
+import { loginUser, makeUserPersistence } from './redux/reducers/authReducer';
 
 function App() {
   const dispatch = useDispatch()
+  // provide persistence login of user
   onAuthStateChanged(auth, (user) => {
     if (user) {
-      dispatch(loginUser({ token: user }))
+      dispatch(makeUserPersistence({ token: user }))
     }
   });
 

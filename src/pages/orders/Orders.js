@@ -3,9 +3,11 @@ import { useSelector } from 'react-redux'
 import './orders.css'
 import { authSelector } from '../../redux/reducers/authReducer'
 import { ToastContainer } from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
 
 const Orders = () => {
     const { currentUser } = useSelector(authSelector)
+    const navigate = useNavigate()
 
     let sortedOrders = [...currentUser.orders].sort((a, b) => new Date(b.date) - new Date(a.date));
 
@@ -37,7 +39,7 @@ const Orders = () => {
                                             {
                                                 order.list.map((product, index) => (
                                                     <tr key={index}>
-                                                        <td className='poppins-regular'><img src={product.images[0]} alt={product.title} /></td>
+                                                        <td className='poppins-regular'><img src={product.images[0]} alt={product.title} onClick={() => navigate(`/products/${product.id}`)} /></td>
                                                         <td className='poppins-regular'>{product.title}</td>
                                                         <td className='poppins-regular'>x{product.quantity}</td>
                                                         <td className='poppins-regular'>${(product.quantity * (100 - product.discountPercentage) * product.price / 100).toFixed(2)}</td>

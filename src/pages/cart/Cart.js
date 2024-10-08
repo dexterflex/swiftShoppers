@@ -47,6 +47,13 @@ const Cart = () => {
         navigate('/orders')
     }
 
+    function deleteElement(id) {
+        let cart = [...currentUser.cart];
+        cart = cart.filter(c => c.id !== id)
+
+        dispatch(updateUser({ ...currentUser, cart }))
+    }
+
     const subtotal = currentUser.cart.reduce((acc, item) => acc + (item.quantity * (100 - item.discountPercentage) * item.price / 100), 0)
     const total = (subtotal - (subtotal * discount) + deliveryFee).toFixed(2)
 
@@ -72,11 +79,11 @@ const Cart = () => {
                                         {
                                             currentUser.cart.map((element, index) => (
                                                 <tr key={index}>
-                                                    <td className='poppins-regular'><img src={element.images[0]} alt="" /></td>
+                                                    <td className='poppins-regular'><img onClick={() => navigate(`/products/${element.id}`)} src={element.images[0]} alt="" /></td>
                                                     <td className='poppins-regular'>{element.title}</td>
                                                     <td className='poppins-regular'>x{element.quantity}</td>
                                                     <td className='poppins-regular'>${(element.quantity * (100 - element.discountPercentage) * element.price / 100).toFixed(2)}</td>
-                                                    <td className='poppins-regular'><img src="delete.png" style={{ height: "25px", width: "25px" }} /></td>
+                                                    <td className='poppins-regular'><img src="delete.png" style={{ height: "25px", width: "25px" }} onClick={() => deleteElement(element.id)} /></td>
                                                 </tr>
                                             ))
                                         }

@@ -12,12 +12,11 @@ import 'react-toastify/dist/ReactToastify.css';
 const defaultData = {
     email: "",
     password: "",
-    token: null
 }
 
 const Login = () => {
     const [formData, setFormData] = useState(defaultData)
-    const { users } = useSelector(authSelector)
+    const { users, isError } = useSelector(authSelector)
     const navigate = useNavigate()
     const dispatch = useDispatch()
 
@@ -26,6 +25,10 @@ const Login = () => {
         e.preventDefault()
         dispatch(loginUser(formData))
         setFormData(defaultData)
+        if (isError) {
+            toast.error(isError)
+            return
+        }
         navigate(-1)
     }
     return (
