@@ -1,0 +1,153 @@
+/* cart.css */
+.cart_container {
+    padding: 50px 200px;
+    width: 100%;
+    background-color: #f4f4f4;
+    border-radius: 8px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+    /* Extra space between navbar and container */
+}
+
+/* Styling the table with more spacing */
+table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 20px;
+    /* Add more space between table rows */
+    margin-bottom: 50px;
+    /* Larger margin below the table */
+}
+
+thead th {
+    padding: 15px;
+    background-color: #6c757d;
+    color: white;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    text-align: left;
+}
+
+tbody tr {
+    background-color: white;
+    transition: background-color 0.2s ease-in-out;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+tbody td {
+    padding: 15px 10px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 400;
+    text-align: left;
+}
+
+tbody td img {
+    width: 70px;
+    height: 70px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+tbody tr:hover {
+    background-color: #f1f1f1;
+}
+
+/* Coupon and Total Section */
+.cart_bottom_section {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 40px;
+    /* Increased gap between sections */
+    margin-top: 80px;
+    /* More margin at the top for better spacing */
+}
+
+.coupon_section,
+.total_section {
+    flex: 1;
+    max-width: 550px;
+    padding: 30px;
+    background-color: white;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+.coupon_section h3,
+.total_section h3 {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    margin-bottom: 20px;
+    color: #343a40;
+}
+
+.coupon_input {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-family: 'Poppins', sans-serif;
+}
+
+.apply_coupon_button {
+    width: 100%;
+    padding: 12px;
+    background-color: black;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    font-family: 'Poppins', sans-serif;
+    transition: background-color 0.3s ease;
+}
+
+.apply_coupon_button:hover {
+    background-color: #0056b3;
+}
+
+/* Order Summary */
+.total_section {
+    display: flex;
+    flex-direction: column;
+}
+
+.summary_item {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+}
+
+.total_section .total {
+    margin-top: 20px;
+    font-weight: 600;
+}
+
+.checkout_button {
+    width: 100%;
+    padding: 15px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    cursor: pointer;
+    margin-top: 30px;
+    font-family: 'Poppins', sans-serif;
+    transition: background-color 0.3s ease;
+}
+
+.checkout_button:hover {
+    background-color: #218838;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .cart_bottom_section {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .coupon_section,
+    .total_section {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+}

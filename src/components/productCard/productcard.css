@@ -1,0 +1,72 @@
+/* productcard.css */
+
+.product_card {
+    display: flex;
+    flex-direction: column;
+    background-color: #ffffff;
+    /* White background for minimal look */
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease-in-out;
+    list-style: none;
+}
+
+.product_card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.product_image_container {
+    overflow: hidden;
+}
+
+.product_image_container img {
+    width: 100%;
+    height: 300px;
+    object-fit: contain;
+    background: #F5F5F5;
+    transition: all .3s ease-in-out;
+    /* Light background for the image container */
+}
+
+.product_image_container img:hover {
+    transform: scale(1.2);
+}
+
+.product_details {
+    padding: 15px;
+    text-align: center;
+    /* Centering the text for a clean look */
+}
+
+.product_title {
+    font-size: 1rem;
+    margin: 0.5em 0;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.product_brand {
+    font-size: 0.9rem;
+    color: #777;
+}
+
+.product_price {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin: 0.5em 0;
+}
+
+.product_discount {
+    font-size: 0.9rem;
+    color: #d9534f;
+    /* Red for discounts */
+}
+
+.product_rating {
+    font-size: 0.8rem;
+    color: #333;
+    /* Dark color for the rating */
+}
