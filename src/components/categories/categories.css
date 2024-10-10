@@ -24,5 +24,6 @@
 
 .categories_container button:hover {
     color: white;
-    background-color: #031b34;
+    /* background-color: #031b34; */
+    background: linear-gradient(135deg, #031b34, #81afdd)
 }

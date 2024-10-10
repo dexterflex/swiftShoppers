@@ -11,18 +11,12 @@
 
 .top_section h1 {
     font-size: 48px;
-    /* Adjust the font size as needed */
     font-weight: bold;
-    /* Optional: make the text bold */
-    background: linear-gradient(89.97deg, #ae67fa 1.84%, #f49867 102.67%);
+    background: linear-gradient(135deg, #031b34, #81afdd);
     -webkit-background-clip: text;
-    /* For Safari */
     -webkit-text-fill-color: transparent;
-    /* For Safari */
     background-clip: text;
-    text-fill-color: transparent;
-    /* For other browsers */
-    margin-bottom: 20px;
+    margin-bottom: 30px;
 }
 
 .top_section button {
@@ -43,7 +37,7 @@
 }
 
 .middle_section {
-    margin-top: 100px;
+    margin-top: 150px;
     display: flex;
     align-items: flex-start;
     justify-content: flex-start;

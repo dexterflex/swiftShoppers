@@ -11,20 +11,25 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    border-radius: 5px;
+}
+
+.product {
+    background-color: #fff;
+    box-shadow: 0 0 5px #ccc;
 }
 
 .product img {
     width: 100%;
     height: 100%;
     object-fit: contain;
-    box-shadow: 0 0 5px #ccc;
     object-position: center;
-    background-color: #fff;
 }
 
 .products_heading {
     /* background-color: #031b34; */
-    background-color: #81afdd;
+    /* background-color: #81afdd; */
+    background: linear-gradient(135deg, #031b34, #81afdd);
     text-align: center;
     color: white;
     font-size: 1.3rem;
@@ -34,10 +39,10 @@
 }
 
 
-.product:last-child {
+.more_products {
     background-color: transparent;
     display: flex;
-    color: #031b34;
+    color: #81afdd;
     font-size: 1.2rem;
     font-family: poppins;
     font-weight: 600;

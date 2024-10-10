@@ -1,11 +1,17 @@
-.features {
+.features_container {
     padding: 50px 200px;
+}
+
+.features {
+    padding: 30px 100px;
+
     background: #f4f4f4;
     display: flex;
     align-items: center;
     justify-content: space-between;
     border-radius: 5px;
-
+    /* background: linear-gradient(89.97deg, #ae67fa 1.84%, #f49867 102.67%); */
+    background: linear-gradient(135deg, #031b34, #81afdd);
 }
 
 .feature {
@@ -13,6 +19,7 @@
     display: flex;
     align-items: center;
     gap: 20px;
+    color: #fff;
 }
 
 

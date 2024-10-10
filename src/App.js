@@ -1,6 +1,8 @@
 
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import './App.css';
+
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import { useState, useEffect } from 'react';
 import Navbar from './components/navbar/Navbar';
 import Home from './pages/home/Home'
 import Login from './pages/login/Login';
@@ -12,11 +14,22 @@ import ProductDetails from './pages/productDetails/ProductDetails'
 import { useDispatch } from 'react-redux';
 import { auth } from './firebase/config'
 import { onAuthStateChanged } from 'firebase/auth';
-import { loginUser, makeUserPersistence } from './redux/reducers/authReducer';
+import { makeUserPersistence } from './redux/reducers/authReducer';
 import LandingPage from './pages/landingPage/LandingPage';
 
 function App() {
   const dispatch = useDispatch()
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    // Set a timeout to remove the loading screen after 3 seconds
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 5000);
+
+    return () => clearTimeout(timer); // Cleanup timer on unmount
+  }, []);
+
   // provide persistence login of user
   onAuthStateChanged(auth, (user) => {
     if (user) {
@@ -64,9 +77,17 @@ function App() {
 
 
   return (
-    <div className="App">
-      <RouterProvider router={router} />
-    </div>
+    <>
+      {loading ? (
+        <div className="loading-screen">
+          <h1 className='bubble-text'>Welcome to SwiftShoppers</h1>
+        </div>
+      ) :
+        <div className="App">
+          <RouterProvider router={router} />
+        </div>
+      }
+    </>
   );
 }
 

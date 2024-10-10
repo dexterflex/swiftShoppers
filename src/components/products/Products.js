@@ -24,7 +24,7 @@ const Products = ({ name, url }) => {
                     <div className='product pointer' key={index} onClick={() => navigate(`/products/${product.id}`)}><img src={product.images[0]} alt="product.title" /></div>
                 ))
             }
-            <div className='product'><h4 className='pointer' onClick={() => navigate('/search', { state: { url } })}>View More</h4></div>
+            <div className='more_products'><h4 className='pointer' onClick={() => navigate('/search', { state: { url } })}>View More</h4></div>
         </div >
     )
 }
