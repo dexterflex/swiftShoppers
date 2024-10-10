@@ -112,14 +112,14 @@ const ProductInfoBody = ({ product }) => (
         <p className={product.availabilityStatus === "In Stock" ? "status-instock" : "status-outofstock"}>
             {product.availabilityStatus}
         </p>
-        <h3 className="title">{product.title}</h3>
+        <h3 className="title poppins-medium">{product.title}</h3>
         <span>
             <small className='rating'>{product.rating.toFixed(1)} <i className="fa-solid fa-star"></i></small>
             &nbsp;
             <small className="rating-count">{"23,473 Ratings & 1,671 Reviews"}</small>
             <p className='brand'>{product.brand}</p>
         </span>
-        <p className='description'>{product.description}</p>
+        <p className='description poppins-light'>{product.description}</p>
         <p className='price'>${((100 - product.discountPercentage) * product.price / 100).toFixed(2)}</p>
         <p className='special-price'>Special Price</p>
         <h4 className='actual-price'>
@@ -134,47 +134,47 @@ const ProductInfoBody = ({ product }) => (
 
 const ProductOffers = () => (
     <div className='product-offers'>
-        <h3 className='heading'>Available Offers</h3>
-        <OfferText offer="10% off up to ₹749 on HDFC Bank Credit Card Transactions." />
-        <OfferText offer="5% Unlimited Cashback on Flipkart Axis Bank Credit Card" />
-        <OfferText offer="10% off up to ₹1,250 on HDFC Bank Credit Card Transactions. Min Txn Value: ₹7,499" />
-        <OfferText offer="Get extra 33% off (price inclusive of cashback/coupon)" />
+        <h3 className='heading poppins-medium'>Available Offers</h3>
+        <OfferText className="poppins-regular" offer="10% off up to ₹749 on HDFC Bank Credit Card Transactions." />
+        <OfferText className="poppins-regular" offer="5% Unlimited Cashback on Flipkart Axis Bank Credit Card" />
+        <OfferText className="poppins-regular" offer="10% off up to ₹1,250 on HDFC Bank Credit Card Transactions. Min Txn Value: ₹7,499" />
+        <OfferText className="poppins-regular" offer="Get extra 33% off (price inclusive of cashback/coupon)" />
     </div>
 );
 
 const OfferText = ({ offer }) => (
-    <p className='offer'><strong>Bank Offer :</strong> {offer}</p>
+    <p className='offer poppins-regular'><strong>Bank Offer :</strong> {offer}</p>
 );
 
 const ProductHighlights = ({ product }) => (
     <div className='product-highlights'>
-        <h3 className='heading'>Product Highlights</h3>
-        <HighlightText label="Brand" text={product.brand} />
-        <HighlightText label="Weight" text={`${product.weight} lbs`} />
-        <HighlightText label="Dimensions" text={`${product.dimensions.width} (Width) * ${product.dimensions.height} (Height) * ${product.dimensions.depth} (Depth)`} />
-        <HighlightText label="Warranty" text={product.warrantyInformation} />
+        <h3 className='heading poppins-medium'>Product Highlights</h3>
+        <HighlightText className="poppins-regular" label="Brand" text={product.brand} />
+        <HighlightText className="poppins-regular" label="Weight" text={`${product.weight} lbs`} />
+        <HighlightText className="poppins-regular" label="Dimensions" text={`${product.dimensions.width} (Width) * ${product.dimensions.height} (Height) * ${product.dimensions.depth} (Depth)`} />
+        <HighlightText className="poppins-regular" label="Warranty" text={product.warrantyInformation} />
     </div>
 );
 
 const HighlightText = ({ label, text }) => (
-    <p className='highlights'><strong>{label} :</strong> {text}</p>
+    <p className='highlights poppins-regular'><strong>{label} :</strong> {text}</p>
 );
 
 const AdditionalInformation = ({ product }) => (
     <div className='additional-informations'>
-        <h3 className='heading'>Additional Information</h3>
+        <h3 className='heading poppins-medium'>Additional Information</h3>
         <InformationText label="Shipping" text={product.shippingInformation} />
         <InformationText label="Return Policy" text={product.returnPolicy} />
     </div>
 );
 
 const InformationText = ({ label, text }) => (
-    <p className='information'><strong>{label} :</strong> {text}</p>
+    <p className='information poppins-regular'><strong>{label} :</strong> {text}</p>
 );
 
 const ProductReviews = ({ reviews }) => (
     <div className='product-reviews'>
-        <h3 className='heading'>Product Reviews</h3>
+        <h3 className='heading poppins-medium'>Product Reviews</h3>
         {reviews.map((review, index) => (
             <ReviewCard key={index} review={review} />
         ))}
@@ -185,14 +185,18 @@ const ProductReviews = ({ reviews }) => (
 );
 
 const ReviewCard = ({ review }) => (
-    <div className='review'>
-        <div className='review-heading'>
-            <p className='reviewer-name'>{review.reviewerName}</p>
-            <small>{new Date(review.date).toDateString()}</small>
+    <div className='review-card'>
+        <div className='review-header'>
+            <div className='reviewer-info'>
+                <p className='reviewer-name poppins-regular'>{review.reviewerName}</p>
+                <small className='review-date'>{new Date(review.date).toLocaleDateString()}</small>
+            </div>
+            <div className='review-rating'>
+                <span>{review.rating} / 5</span>
+            </div>
         </div>
         <div className='review-body'>
-            <p>Rating : {review.rating}</p>
-            <p>{review.comment}</p>
+            <p className='review-comment'>"{review.comment}"</p>
         </div>
     </div>
 );

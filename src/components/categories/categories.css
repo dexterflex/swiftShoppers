@@ -1,0 +1,28 @@
+.categories_container {
+    display: flex;
+    gap: 20px;
+    /* Space between items */
+    padding: 50px 100px;
+    overflow-x: auto;
+    /* Enable horizontal scrolling */
+    white-space: nowrap;
+    /* Prevent line breaks, keeps all items in a row */
+    width: 100%;
+    background: #f4f4f4;
+}
+
+.categories_container button {
+    font-family: poppins;
+    font-weight: 600;
+    padding: 0.5rem 1rem;
+    border: 1px solid #031b34;
+    background-color: transparent;
+    cursor: pointer;
+    flex-shrink: 0;
+    transition: all .3s ease-in-out;
+}
+
+.categories_container button:hover {
+    color: white;
+    background-color: #031b34;
+}

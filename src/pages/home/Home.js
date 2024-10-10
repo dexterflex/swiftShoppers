@@ -6,27 +6,24 @@ import { useDispatch, useSelector } from 'react-redux';
 import { productSelector, renderCategories } from '../../redux/reducers/productReducer';
 import { ScaleLoader } from 'react-spinners';
 import useFetch from '../../hooks/useFetch'
-import { useLocation, useParams, useSearchParams } from 'react-router-dom';
-import { searchProduct } from '../../services/api';
+import { useLocation } from 'react-router-dom';
+
 
 const Home = () => {
-    const { products, categories, defaultUrl, isLoading } = useSelector(productSelector)
+    const { products, isLoading } = useSelector(productSelector)
+    console.log(products)
     const [maxPrice, setMaxPrice] = useState(100000);
     const { setUrl } = useFetch()
-    const dispatch = useDispatch()
-    const [searchParams] = useSearchParams();
-    const myParam = searchParams.get('query');
+    const { state } = useLocation()
 
     useEffect(() => {
-        setUrl(defaultUrl)
-        dispatch(renderCategories())
-    }, [])
-
-    useEffect(() => {
-        if (myParam) {
-            setUrl(searchProduct(myParam))
+        if (state) {
+            setUrl(state.url)
+            setMaxPrice(100000)
         }
-    }, [myParam])
+    }, [state])
+
+
 
 
 
@@ -54,34 +51,23 @@ const Home = () => {
                     </div>
                 </div>
 
-                <div className='category_filter'>
-                    <h4>Category</h4>
-                    <div className='category_options'>
-                        <label className='poppins-extralight'>
-                            <input type='radio' name='category' value='all' defaultChecked onClick={() => setUrl(defaultUrl)} />
-                            All Categories
-                        </label>
-                        {categories.map((category, index) => (
-                            <label key={index} className='poppins-extralight'>
-                                <input type='radio' name='category' value={category.slug} onClick={() => setUrl(category.url)} />
-                                {category.name}
-                            </label>
-                        ))}
-                    </div>
-                </div>
             </div>
 
             {isLoading ?
                 <div className='loader_container'>
                     <ScaleLoader color="green" />
                 </div> :
+
                 <div className="home_products_section">
                     {
-                        filteredProducts.map((product, index) => (
-                            <ProductCard key={index} index={index} product={product} />
-                        ))
+                        filteredProducts.length === 0 ?
+                            <p className='poppins-regular'>No Product Found...</p> :
+                            filteredProducts.map((product, index) => (
+                                <ProductCard key={index} index={index} product={product} />
+                            ))
                     }
                 </div>
+
             }
         </div>
     )

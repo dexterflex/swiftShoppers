@@ -102,6 +102,7 @@
 }
 
 .product-info-body .description {
+    font-size: .9rem;
     line-height: 1.5;
     color: #666;
 }
@@ -122,22 +123,33 @@
     margin-top: 15px;
 }
 
+.offer,
+.highlights,
+.information {
+    font-size: .9rem;
+}
+
 .product-offers {
     border-top: 1px solid #ccc;
-    margin-top: 20px;
-    padding-top: 20px;
+    margin-top: 30px;
+    padding-top: 30px;
+}
+
+.product-offers .heading {
+    color: green;
 }
 
 .product-highlights {
     border-top: 1px solid #ccc;
-    margin-top: 20px;
-    padding-top: 20px;
+    margin-top: 30px;
+    padding-top: 30px;
 }
 
 .product-highlights .heading,
 .additional-informations .heading,
 .product-reviews .heading {
-    font-size: 1.3rem;
+    color: green;
+    font-size: 1.2rem;
     margin-bottom: 10px;
 }
 
@@ -148,28 +160,110 @@
 
 .additional-informations {
     border-top: 1px solid #ccc;
-    margin-top: 20px;
-    padding-top: 20px;
+    margin-top: 30px;
+    padding-top: 30px;
 }
 
 .product-reviews {
     border-top: 1px solid #ccc;
-    margin-top: 20px;
-    padding-top: 20px;
-}
-
-.review {
-    padding: 10px 0;
-    border-bottom: 1px solid #ccc;
-}
-
-.review-heading {
-    display: flex;
-    justify-content: space-between;
+    margin-top: 30px;
+    padding-top: 30px;
 }
 
 .more-reviews {
+    text-align: end;
+}
+
+.more-reviews button {
+    padding: .5rem 1.5rem;
+    background: linear-gradient(45deg, #f39c12, #e67e22);
+    /* Orange gradient */
+    color: #fff;
+    border: none;
+    border-radius: 30px;
+    /* More rounded */
+    font-size: 1rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    /* Uppercase text */
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: all 0.4s ease;
+    /* Slower transition for smoothness */
+    outline: none;
+    /* Remove default outline */
+}
+
+.more-reviews button:hover {
+    background: linear-gradient(45deg, #e67e22, #d35400);
+    /* Darker gradient on hover */
+    transform: scale(1.05);
+    /* Slight enlargement on hover */
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+    /* Larger shadow on hover */
+}
+
+.more-reviews button:active {
+    background: linear-gradient(45deg, #d35400, #c0392b);
+    /* Even darker gradient on click */
+    transform: scale(0.95);
+    /* Shrink slightly when clicked */
+    box-shadow: none;
+}
+
+.review-card {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin: 10px 0;
+    transition: transform 0.3s ease;
+
+}
+
+.review-card:hover {
+    transform: translateY(-5px);
+}
+
+.review-header {
     display: flex;
-    justify-content: flex-end;
-    margin-top: 15px;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.reviewer-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.reviewer-name {
+    font-weight: 600;
+    font-size: 1rem;
+    color: #333;
+}
+
+.review-date {
+    font-size: 14px;
+    color: #888;
+}
+
+.review-rating {
+    font-size: 16px;
+    font-weight: 500;
+    color: #f39c12;
+    background-color: #faf3e0;
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+
+.review-body {
+    font-size: 16px;
+    color: #555;
+    line-height: 1.6;
+}
+
+.review-comment {
+    font-style: italic;
+    color: #666;
 }

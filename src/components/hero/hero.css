@@ -1,0 +1,111 @@
+.hero_section {
+    padding: 0 100px;
+    height: calc(100vh - 70px);
+    background: #f4f4f4;
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    position: relative;
+}
+
+.hero_section>div {
+    flex: 1;
+    height: 100%;
+}
+
+.image_container img {
+    object-fit: contain;
+    height: 100%;
+    width: 100%;
+    animation: zoomInOut 10s ease-in-out infinite;
+}
+
+.blur_bg {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-self: center;
+    position: relative;
+}
+
+.blur_bg>*:last-child {
+    position: absolute;
+    bottom: 50px;
+}
+
+.blur_bg h1 {
+    font-family: poppins;
+    font-size: 2.8rem;
+    margin-bottom: 10px;
+    color: #031b34;
+    animation: slideIn 1.5s;
+    animation-timing-function: cubic-bezier();
+    letter-spacing: 1px;
+}
+
+.blur_bg h1 span {
+    /* color: #20B2AA; */
+    color: #81afdd;
+}
+
+.blur_bg p {
+    font-family: poppins;
+    color: grey;
+    margin-bottom: 40px;
+    animation: slideIn 1.75s;
+    animation-timing-function: cubic-bezier();
+}
+
+.blur_bg button {
+    font-family: poppins;
+    font-weight: 600;
+    width: 150px;
+    padding: .6rem 2rem;
+    outline: none;
+    border: 1px solid #031b34;
+    background-color: #031b34;
+    color: #fff;
+    cursor: pointer;
+    transition: all .3s ease-in-out;
+    animation: slideIn 1.9s;
+    animation-timing-function: cubic-bezier();
+    margin-bottom: 20px;
+}
+
+
+.blur_bg button:hover {
+    background-color: transparent;
+    color: #031b34;
+}
+
+
+@keyframes slideIn {
+    0% {
+        opacity: 0;
+        transform: translateY(50px);
+        /* Initial position */
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+        /* Final position */
+    }
+}
+
+@keyframes zoomInOut {
+    0% {
+        transform: scale(1);
+        /* Initial scale */
+    }
+
+    50% {
+        transform: scale(1.05);
+        /* Slight zoom in */
+    }
+
+    100% {
+        transform: scale(1);
+        /* Back to original size */
+    }
+}

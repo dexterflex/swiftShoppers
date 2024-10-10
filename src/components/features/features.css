@@ -1,0 +1,21 @@
+.features {
+    padding: 50px 200px;
+    background: #f4f4f4;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 5px;
+
+}
+
+.feature {
+    font-family: poppins;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+
+.feature img {
+    height: 100px
+}

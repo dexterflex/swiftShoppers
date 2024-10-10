@@ -13,6 +13,7 @@ import { useDispatch } from 'react-redux';
 import { auth } from './firebase/config'
 import { onAuthStateChanged } from 'firebase/auth';
 import { loginUser, makeUserPersistence } from './redux/reducers/authReducer';
+import LandingPage from './pages/landingPage/LandingPage';
 
 function App() {
   const dispatch = useDispatch()
@@ -30,6 +31,10 @@ function App() {
       children: [
         {
           index: true,
+          element: <LandingPage />
+        },
+        {
+          path: "/search",
           element: <Home />
         },
         {
