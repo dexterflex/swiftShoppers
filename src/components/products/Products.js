@@ -8,7 +8,7 @@ const Products = ({ name, url }) => {
     const [isLoading, setIsLoading] = useState(true)
 
     useEffect(() => {
-        fetch(`${url}?limit=4`)
+        fetch(`${url}?limit=5`)
             .then(res => res.json())
             .then(parseJson => {
                 setProducts(parseJson.products)
@@ -17,15 +17,17 @@ const Products = ({ name, url }) => {
     }, [])
 
     return (
-        <div className='products'>
-            <div className='products_heading'><h3>{name}</h3></div>
-            {
-                products.map((product, index) => (
-                    <div className='product pointer' key={index} onClick={() => navigate(`/products/${product.id}`)}><img src={product.images[0]} alt="product.title" /></div>
-                ))
-            }
-            <div className='more_products'><h4 className='pointer' onClick={() => navigate('/search', { state: { url } })}>View More</h4></div>
-        </div >
+        <div className='products_container'>
+            <div className='more_products'><button onClick={() => navigate('/search', { state: { url } })}>View More</button></div>
+            <div className='products'>
+                <div className='products_heading'><h3>{name}</h3></div>
+                {
+                    products.map((product, index) => (
+                        <div className='product pointer' key={index} onClick={() => navigate(`/products/${product.id}`)}><img src={product.images[0]} alt="product.title" /></div>
+                    ))
+                }
+            </div >
+        </div>
     )
 }
 

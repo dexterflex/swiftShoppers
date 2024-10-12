@@ -1,6 +1,12 @@
-.products {
-    padding: 50px 100px;
+.products_container {
     background: #f4f4f4;
+    padding: 50px 100px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.products {
     display: grid;
     grid-template-columns: repeat(6, 1fr);
     gap: 20px;
@@ -42,10 +48,26 @@
 .more_products {
     background-color: transparent;
     display: flex;
+    justify-content: end;
     color: #81afdd;
     font-size: 1.2rem;
     font-family: poppins;
     font-weight: 600;
+}
+
+.more_products button {
+    font-family: poppins;
+    font-weight: 600;
+    padding: .5rem 1rem;
+    border-radius: 5px;
+    border: 1px solid #031b34;
+    cursor: pointer;
+    transition: all .3s ease-in-out;
+}
+
+.more_products button:hover {
+    color: white;
+    background: linear-gradient(135deg, #031b34, #81afdd);
 }
 
 .pointer {

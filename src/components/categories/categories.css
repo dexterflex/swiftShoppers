@@ -16,6 +16,7 @@
     font-weight: 600;
     padding: 0.5rem 1rem;
     border: 1px solid #031b34;
+    border-radius: 5px;
     background-color: transparent;
     cursor: pointer;
     flex-shrink: 0;
