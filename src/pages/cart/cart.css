@@ -18,6 +18,37 @@ table {
     /* Larger margin below the table */
 }
 
+/* Specific column widths */
+th:nth-child(1),
+td:nth-child(1) {
+    width: 10%;
+    /* Small space for image */
+}
+
+th:nth-child(2),
+td:nth-child(2) {
+    width: 40%;
+    /* Larger space for the title */
+}
+
+th:nth-child(3),
+td:nth-child(3),
+th:nth-child(4),
+td:nth-child(4),
+th:nth-child(5),
+td:nth-child(5) {
+    width: 16%;
+    /* Equal width for the remaining columns */
+}
+
+table img {
+    height: 50px;
+    width: 50px;
+    object-fit: cover;
+    cursor: pointer;
+}
+
+
 thead th {
     padding: 15px;
     background-color: #6c757d;

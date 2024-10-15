@@ -57,6 +57,21 @@ const Cart = () => {
     const subtotal = currentUser.cart.reduce((acc, item) => acc + (item.quantity * (100 - item.discountPercentage) * item.price / 100), 0)
     const total = (subtotal - (subtotal * discount) + deliveryFee).toFixed(2)
 
+    function handleQuantityChange(id, delta) {
+        let cart = [...currentUser.cart];
+        let productIndex = cart.findIndex(c => c.id === id);
+
+        if (productIndex !== -1) {
+            // Update the quantity and ensure it doesn't go below 1
+            let updatedProduct = { ...cart[productIndex] };
+            updatedProduct.quantity = Math.max(1, updatedProduct.quantity + delta);
+
+            cart[productIndex] = updatedProduct;
+            dispatch(updateUser({ ...currentUser, cart }));
+        }
+    }
+
+
     return (
         <>
             {
@@ -81,7 +96,13 @@ const Cart = () => {
                                                 <tr key={index}>
                                                     <td className='poppins-regular'><img onClick={() => navigate(`/products/${element.id}`)} src={element.images[0]} alt="" /></td>
                                                     <td className='poppins-regular'>{element.title}</td>
-                                                    <td className='poppins-regular'>x{element.quantity}</td>
+                                                    <td className='poppins-regular'>
+                                                        <i className="fa-solid fa-circle-minus"
+                                                            onClick={() => handleQuantityChange(element.id, -1)} style={{ marginRight: "10px" }}></i>
+                                                        {element.quantity}
+                                                        <i className="fa-solid fa-circle-plus"
+                                                            onClick={() => handleQuantityChange(element.id, 1)} style={{ marginLeft: "10px" }}></i>
+                                                    </td>
                                                     <td className='poppins-regular'>${(element.quantity * (100 - element.discountPercentage) * element.price / 100).toFixed(2)}</td>
                                                     <td className='poppins-regular'><img src="delete.png" style={{ height: "25px", width: "25px" }} onClick={() => deleteElement(element.id)} /></td>
                                                 </tr>

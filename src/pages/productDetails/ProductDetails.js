@@ -11,7 +11,6 @@ import 'react-toastify/dist/ReactToastify.css';
 const ProductDetails = () => {
     const { id } = useParams();
     const [product, setProduct] = useState({});
-    const [quantity, setQuantity] = useState(1);
     const [isLoading, setIsLoading] = useState(true);
     const { isAuthenticated, currentUser } = useSelector(authSelector);
     const navigate = useNavigate();
@@ -31,24 +30,18 @@ const ProductDetails = () => {
             navigate('/login');
             return;
         }
-        let flag = 0
+
         let cart = [...currentUser.cart]
-        let productIndex = cart.findIndex(c => c.id === product.id);
+        let isAvailable = cart.find(c => c.id === product.id);
 
-        if (productIndex === -1) {
-            flag = 1;
-            cart.push({ ...product, quantity })
-        } else {
-            cart[productIndex] = { ...cart[productIndex], quantity }
-        }
+        if (!isAvailable) {
 
-        dispatch(updateUser({ ...currentUser, cart }))
-
-        if (flag === 1) {
+            cart.push({ ...product, quantity: 1 })
+            dispatch(updateUser({ ...currentUser, cart }))
             toast.success("Product added to Cart");
         }
         else {
-            toast.success("Cart has been Updated")
+            toast.success("Already in the Cart")
         }
         // Show success message
     };
@@ -60,11 +53,11 @@ const ProductDetails = () => {
         }
 
         let orders = [...currentUser.orders]; // Copy existing orders
-        let amount = ((100 - product.discountPercentage) / 100) * product.price * quantity; // Calculate the amount
+        let amount = ((100 - product.discountPercentage) / 100) * product.price; // Calculate the amount
 
         // Add the new order with the product list and amount
         orders.push({
-            list: [{ ...product, quantity }],
+            list: [{ ...product, quantity: 1 }],
             amount,
             date: new Date().getTime()
         });
@@ -74,29 +67,28 @@ const ProductDetails = () => {
     };
 
     return (
-        <>
-            <div className='product-details-container'>
-                {isLoading ? (
-                    <div className='loading-container'>
-                        <ScaleLoader color="green" />
-                    </div>
-                ) : (
-                    <section className='product-info'>
-                        <ProductInfoHeading product={product} onCart={handleCart} onBuy={handleBuy} quantity={quantity} setQuantity={setQuantity} />
-                        <ProductInfoBody product={product} />
-                    </section>
-                )}
-            </div>
-            <ToastContainer />
-        </>
+
+        <div className='product-details-container'>
+            {isLoading ? (
+                <div className='loading-container'>
+                    <ScaleLoader color="green" />
+                </div>
+            ) : (
+                <section className='product-info'>
+                    <ProductInfoHeading product={product} onCart={handleCart} onBuy={handleBuy} åå />
+                    <ProductInfoBody product={product} />
+                </section>
+            )}
+        </div>
+
     );
 };
 
-const ProductInfoHeading = ({ product, onCart, onBuy, quantity, setQuantity }) => (
+const ProductInfoHeading = ({ product, onCart, onBuy }) => (
+
     <div className='product-info-heading' >
         <img src={product.images[0]} alt={product.title} />
         <div className='button-container'>
-            <input type="text" value={quantity} onChange={(e) => setQuantity(e.target.value)} style={{ textAlign: "center" }} />
             <button className='add-to-cart' onClick={onCart}>
                 <i className="fa-solid fa-cart-shopping"></i> Add to Cart
             </button>
@@ -105,6 +97,7 @@ const ProductInfoHeading = ({ product, onCart, onBuy, quantity, setQuantity }) =
             </button>
         </div>
     </div >
+
 );
 
 const ProductInfoBody = ({ product }) => (
