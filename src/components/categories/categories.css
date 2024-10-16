@@ -8,7 +8,7 @@
     white-space: nowrap;
     /* Prevent line breaks, keeps all items in a row */
     width: 100%;
-    background: #f4f4f4;
+    background: #fff;
 }
 
 .categories_container button {

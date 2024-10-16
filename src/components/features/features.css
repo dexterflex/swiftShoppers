@@ -1,11 +1,11 @@
 .features_container {
     padding: 50px 200px;
+    background: #fff;
 }
 
 .features {
     padding: 30px 100px;
 
-    background: #f4f4f4;
     display: flex;
     align-items: center;
     justify-content: space-between;

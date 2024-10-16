@@ -1,12 +1,13 @@
 .faq-container {
     padding: 50px 300px;
+    background-color: #fff;
 }
 
 .faq {
     padding: 100px 50px;
     color: #031b34;
     border-radius: 10px;
-    background-color: #fff;
+    /* background-color: #f4f4f4; */
     box-shadow: 0 0 15px #ccc;
 }
 

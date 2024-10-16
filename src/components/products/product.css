@@ -1,5 +1,5 @@
 .products_container {
-    background: #f4f4f4;
+    background: white;
     padding: 50px 100px;
     display: flex;
     flex-direction: column;
@@ -8,12 +8,12 @@
 
 .products {
     display: grid;
-    grid-template-columns: repeat(6, 1fr);
+    grid-template-columns: repeat(5, 1fr);
     gap: 20px;
 }
 
 .products>div {
-    height: 300px;
+    height: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -49,7 +49,6 @@
     background-color: transparent;
     display: flex;
     justify-content: end;
-    color: #81afdd;
     font-size: 1.2rem;
     font-family: poppins;
     font-weight: 600;
@@ -58,6 +57,7 @@
 .more_products button {
     font-family: poppins;
     font-weight: 600;
+    background: #fff;
     padding: .5rem 1rem;
     border-radius: 5px;
     border: 1px solid #031b34;

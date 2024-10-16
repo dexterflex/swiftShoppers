@@ -1,7 +1,7 @@
 .hero_section {
     padding: 0 100px;
     height: calc(100vh - 70px);
-    background: #f4f4f4;
+    background: #fff;
     display: flex;
     flex-direction: row-reverse;
     align-items: center;

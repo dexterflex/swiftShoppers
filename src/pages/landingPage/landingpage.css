@@ -1,5 +1,6 @@
 .landing_page {
     min-height: calc(100vh - 70px);
+    background-color: #fff;
 }
 
 hr {
@@ -12,6 +13,7 @@ hr {
     align-items: center;
     justify-content: space-between;
     gap: 50px;
+    background-color: #fff;
 }
 
 .feedback_container>* {

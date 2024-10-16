@@ -7,6 +7,13 @@
   scroll-behavior: smooth;
 }
 
+body,
+html {
+  height: 100%;
+  width: 100%;
+  background-color: #fff;
+}
+
 /* For Chrome, Safari, and Opera */
 ::-webkit-scrollbar {
   display: none;

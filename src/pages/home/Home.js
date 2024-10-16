@@ -11,7 +11,6 @@ import { useLocation } from 'react-router-dom';
 
 const Home = () => {
     const { products, isLoading } = useSelector(productSelector)
-    console.log(products)
     const [maxPrice, setMaxPrice] = useState(100000);
     const { setUrl } = useFetch()
     const { state } = useLocation()

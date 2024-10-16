@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
+import ProductCard from '../productCard/ProductCard';
 import './product.css'
 
 const Products = ({ name, url }) => {
@@ -8,7 +9,7 @@ const Products = ({ name, url }) => {
     const [isLoading, setIsLoading] = useState(true)
 
     useEffect(() => {
-        fetch(`${url}?limit=5`)
+        fetch(`${url}?limit=4`)
             .then(res => res.json())
             .then(parseJson => {
                 setProducts(parseJson.products)
@@ -23,7 +24,7 @@ const Products = ({ name, url }) => {
                 <div className='products_heading'><h3>{name}</h3></div>
                 {
                     products.map((product, index) => (
-                        <div className='product pointer' key={index} onClick={() => navigate(`/products/${product.id}`)}><img src={product.images[0]} alt="product.title" /></div>
+                        <ProductCard key={product.id} index={index} product={product} />
                     ))
                 }
             </div >
