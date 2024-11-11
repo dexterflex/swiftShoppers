@@ -1,31 +1,25 @@
-import './home.css'
-
-import React, { useEffect, useState } from 'react'
+import './home.css';
+import React, { useEffect, useState } from 'react';
 import ProductCard from '../../components/productCard/ProductCard';
-import { useDispatch, useSelector } from 'react-redux';
-import { productSelector, renderCategories } from '../../redux/reducers/productReducer';
+import { useSelector } from 'react-redux';
+import { productSelector } from '../../redux/reducers/productReducer';
 import { ScaleLoader } from 'react-spinners';
-import useFetch from '../../hooks/useFetch'
+import useFetch from '../../hooks/useFetch';
 import { useLocation } from 'react-router-dom';
 
-
 const Home = () => {
-    const { products, isLoading } = useSelector(productSelector)
-    const [maxPrice, setMaxPrice] = useState(100000);
-    const { setUrl } = useFetch()
-    const { state } = useLocation()
+    const { products, isLoading } = useSelector(productSelector);
+    const [maxPrice, setMaxPrice] = useState(100000); // State for max price filter
+    const { setUrl } = useFetch();
+    const { state } = useLocation(); // Get location state from router
 
+    // Set URL from state if available
     useEffect(() => {
         if (state) {
-            setUrl(state.url)
-            setMaxPrice(100000)
+            setUrl(state.url);
+            setMaxPrice(100000); // Reset max price to default
         }
-    }, [state])
-
-
-
-
-
+    }, [state, setUrl]);
 
     // Filter products based on the max price
     const filteredProducts = products.filter(product => product.price <= maxPrice);
@@ -49,27 +43,25 @@ const Home = () => {
                         <span>${maxPrice}</span> {/* Display the current selected max price */}
                     </div>
                 </div>
-
             </div>
 
-            {isLoading ?
+            {isLoading ? (
                 <div className='loader_container'>
                     <ScaleLoader color="green" />
-                </div> :
-
-                <div className="home_products_section">
-                    {
-                        filteredProducts.length === 0 ?
-                            <p className='poppins-regular'>No Product Found...</p> :
-                            filteredProducts.map((product, index) => (
-                                <ProductCard key={index} index={index} product={product} />
-                            ))
-                    }
                 </div>
-
-            }
+            ) : (
+                <div className="home_products_section">
+                    {filteredProducts.length === 0 ? (
+                        <p className='poppins-regular'>No Product Found...</p>
+                    ) : (
+                        filteredProducts.map((product) => (
+                            <ProductCard key={product.id} product={product} />
+                        ))
+                    )}
+                </div>
+            )}
         </div>
-    )
-}
+    );
+};
 
-export default Home
+export default Home;

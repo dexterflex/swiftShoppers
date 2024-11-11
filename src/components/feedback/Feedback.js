@@ -2,26 +2,30 @@ import React, { useState } from 'react';
 import './feedback.css';
 
 const Feedback = () => {
+    // State to manage form input values
     const [formData, setFormData] = useState({
         name: '',
         email: '',
         feedback: ''
     });
 
+    // Handle form input changes and update state
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
     };
 
+    // Handle form submission
     const handleSubmit = (e) => {
-        e.preventDefault();
-        console.log(formData);
-        alert('Thank you for your feedback!');
+        e.preventDefault();  // Prevent default form submission behavior
+        console.log(formData);  // Log form data (could be sent to an API)
+        alert('Thank you for your feedback!');  // Notify user of form submission
     };
 
     return (
         <div className="feedback-form-container">
             <h2>We'd Love Your Feedback</h2>
             <form className="feedback-form" onSubmit={handleSubmit}>
+                {/* Input field for name */}
                 <div className="form-field">
                     <input
                         type="text"
@@ -30,10 +34,11 @@ const Feedback = () => {
                         value={formData.name}
                         onChange={handleChange}
                         placeholder="Your Name"
-                        required
+                        required  // Make field required
                     />
                 </div>
 
+                {/* Input field for email */}
                 <div className="form-field">
                     <input
                         type="email"
@@ -42,10 +47,11 @@ const Feedback = () => {
                         value={formData.email}
                         onChange={handleChange}
                         placeholder="Your Email"
-                        required
+                        required  // Make field required
                     />
                 </div>
 
+                {/* Textarea for feedback */}
                 <div className="form-field">
                     <textarea
                         id="feedback"
@@ -53,10 +59,11 @@ const Feedback = () => {
                         value={formData.feedback}
                         onChange={handleChange}
                         placeholder="Your Feedback"
-                        required
+                        required  // Make field required
                     />
                 </div>
 
+                {/* Submit button */}
                 <button type="submit" className="submit-btn">Submit</button>
             </form>
         </div>

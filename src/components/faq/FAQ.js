@@ -2,15 +2,21 @@ import React, { useState } from 'react';
 import './faq.css';
 
 const FAQ = () => {
+    // State to keep track of which FAQ is currently selected
     const [selected, setSelected] = useState(null);
 
+    // Toggle function to expand/collapse a selected FAQ item
     const toggle = (index) => {
         if (selected === index) {
-            return setSelected(null);  // Collapse if already opened
+            // Collapse if already opened
+            setSelected(null);
+        } else {
+            // Expand the clicked question
+            setSelected(index);
         }
-        setSelected(index);  // Expand the clicked question
     };
 
+    // Array of FAQ questions and answers
     const questions = [
         {
             question: "How long does delivery take?",
@@ -39,12 +45,18 @@ const FAQ = () => {
             <div className="faq">
                 <h2>Frequently Asked Questions</h2>
                 <div className="faq-list">
+                    {/* Map through each FAQ question and display it */}
                     {questions.map((item, index) => (
                         <div key={index} className="faq-item">
-                            <div className="faq-question" onClick={() => toggle(index)}>
+                            <div
+                                className="faq-question"
+                                onClick={() => toggle(index)} // Toggle the FAQ answer when clicked
+                            >
                                 <h3>{item.question}</h3>
+                                {/* Show '-' if selected, '+' otherwise */}
                                 <span>{selected === index ? '-' : '+'}</span>
                             </div>
+                            {/* Conditionally show the answer if the question is selected */}
                             <div className={selected === index ? 'faq-answer show' : 'faq-answer'}>
                                 <p>{item.answer}</p>
                             </div>

@@ -5,15 +5,15 @@ import { authSelector } from './redux/reducers/authReducer';
 
 const Protected = ({ children }) => {
     const navigate = useNavigate();
-    const { isAuthenticated } = useSelector(authSelector);
+    const { isAuthenticated, isLoading } = useSelector(authSelector);
 
     useEffect(() => {
-        if (!isAuthenticated) {
+        if (!isLoading && !isAuthenticated) {
             navigate('/login');
         }
-    }, [isAuthenticated, navigate]);
+    }, [isAuthenticated, isLoading, navigate]);
 
-    // Only render children if authenticated
+    // Only render children if authenticated and not loading
     return isAuthenticated ? children : null;
 };
 
